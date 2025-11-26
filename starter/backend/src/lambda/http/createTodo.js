@@ -11,6 +11,24 @@ export const handler = async (event) => {
     const userId = getUserId(event)
     const newTodo = JSON.parse(event.body)
 
+    if (
+        !newTodo.name ||
+        typeof newTodo.name !== 'string' ||
+        newTodo.name.trim().length < 5
+    ) {
+        logger.warn('Validation failed for todo name', { userId, body: newTodo })
+        return {
+            statusCode: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true
+            },
+            body: JSON.stringify({
+                error: 'Todo name must be at least 5 characters long'
+            })
+        }
+    }
+
     const item = await createTodo(newTodo, userId)
 
     return {
