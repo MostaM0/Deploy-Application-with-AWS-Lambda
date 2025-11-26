@@ -1,9 +1,13 @@
 // src/lambda/http/updateTodo.js
 import { updateTodo } from '../../businessLogic/todos.mjs'
 import { getUserId } from '../../auth/utils.mjs'
+import {createLogger} from "../../utils/logger.mjs";
+
+
+const logger = createLogger('updateTodoHandler')
 
 export const handler = async (event) => {
-    console.log('Processing updateTodo event', event)
+    logger.info('Processing updateTodo event', { event })
 
     const userId = getUserId(event)
     const todoId = event.pathParameters.todoId

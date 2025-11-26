@@ -1,9 +1,14 @@
 // src/lambda/http/deleteTodo.js
 import { deleteTodo } from '../../businessLogic/todos.mjs'
 import { getUserId } from '../../auth/utils.mjs'
+import {createLogger} from "../../utils/logger.mjs";
+
+
+const logger = createLogger('deleteTodoHandler');
+
 
 export const handler = async (event) => {
-    console.log('Processing deleteTodo event', event)
+    logger.info('Processing deleteTodo event', { event })
 
     const userId = getUserId(event)
     const todoId = event.pathParameters.todoId

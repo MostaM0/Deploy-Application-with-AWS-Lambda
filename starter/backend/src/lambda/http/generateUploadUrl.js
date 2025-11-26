@@ -1,9 +1,14 @@
 // src/lambda/http/generateUploadUrl.js
 import { createAttachmentPresignedUrl } from '../../businessLogic/todos.mjs'
 import { getUserId } from '../../auth/utils.mjs'
+import {createLogger} from "../../utils/logger.mjs";
+
+
+const logger = createLogger('generateUploadUrlHandler');
+
 
 export const handler = async (event) => {
-    console.log('Processing generateUploadUrl event', event)
+    logger.info('Processing generateUploadUrl event', { event })
 
     const userId = getUserId(event)
     const todoId = event.pathParameters.todoId
