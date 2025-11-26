@@ -28,6 +28,7 @@ provider:
     TODOS_CREATED_AT_INDEX: ${self:custom.todosCreatedAtIndex}
     ATTACHMENTS_S3_BUCKET: ${self:custom.attachmentsBucketName}
     SIGNED_URL_EXPIRATION: ${self:custom.signedUrlExpiration}
+    AUTH_0_JWKS_URL: https://dev-ovrblq3dy56j1p1s.us.auth0.com/.well-known/jwks.json
 
 functions:
 
