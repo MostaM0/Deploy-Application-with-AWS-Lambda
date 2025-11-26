@@ -1,8 +1,21 @@
+// src/lambda/http/deleteTodo.js
+import { deleteTodo } from '../../businessLogic/todos.mjs'
+import { getUserId } from '../../auth/utils.mjs'
 
-export function handler(event) {
-  const todoId = event.pathParameters.todoId
+export const handler = async (event) => {
+    console.log('Processing deleteTodo event', event)
 
-  // TODO: Remove a TODO item by id
-  return undefined
+    const userId = getUserId(event)
+    const todoId = event.pathParameters.todoId
+
+    await deleteTodo(todoId, userId)
+
+    return {
+        statusCode: 204,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true
+        },
+        body: ''
+    }
 }
-
