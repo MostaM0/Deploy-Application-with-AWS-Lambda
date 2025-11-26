@@ -73,8 +73,9 @@ functions:
           cors: true
           authorizer: Auth
           request:
-            schema:
+            schemas:
               application/json: ${file(src/requests/create-todo-request.json)}
+
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -97,7 +98,7 @@ functions:
           cors: true
           authorizer: Auth
           request:
-            schema:
+            schemas:
               application/json: ${file(src/requests/update-todo-request.json)}
     iamRoleStatements:
       - Effect: Allow
